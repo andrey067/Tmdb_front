@@ -1,0 +1,73 @@
+<app-titulo [titulo] = "'Filmes'"></app-titulo>
+<div action="" class="form inline">
+  <div class="flex-fill pr-3">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Filtro: </div>
+      </div>
+      <!-- <input type="text" class="form-control" placeholder="Filtrar filme por nome"
+        (input)="filtermovies($event.target)"> -->
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead class="btn-dark">
+    <th></th>
+    <th>
+      <button type="button" class="btn btn-outline-light btn-sm" (click)="changeImage()">
+        <i class="{{!showimage ? 'fa fa-eye' : 'fa fa-eye-slash'}}"></i>
+        {{!showimage ? 'exibir' : 'ocultar'}}
+      </button>
+    </th>
+    <th>Name</th>
+    <th>Data Lançamento</th>
+    <th>Média de votos</th>
+    <th>Contagem de votos</th>
+    <th>Popularidade</th>
+    <th>Opções</th>
+    <th></th>
+  </thead>
+  <tbody *ngIf="movies.length">
+    <tr *ngFor="let movie of movies">
+      <td>{{movie.id}}</td>
+      <td class="d-none d-md-table-cell">
+        <img [collapse]="!showimage" [isAnimated]="true" src="https://image.tmdb.org/t/p/w500{{movie.backdrop_path}}"
+          [style.width.px]="widthimage" [style.margin.px]="marginImage">
+      </td>
+      <td>{{movie.title}}</td>
+      <td>{{movie.release_date | DateTimeFormat}}</td>
+      <td>{{movie.vote_average}}</td>
+      <td>{{movie.vote_count}}</td>
+      <td>{{movie.popularity}}</td>
+      <td>
+        <div class="btn group">
+          <button type="button" class="btn btn-primary btn-sm" tooltip="Adicionar filme a lista" (click)="openModal(template)">
+            <i class="fa fa-film"></i>
+          </button>
+          <button type="button" class="btn btn-warning btn-sm" tooltip="Adicionar como assistido">
+            <i class="fa fa-eye"></i>
+          </button>
+        </div>
+
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!movies">
+    <tr>
+      <td colspan="8">
+        <h4>Para visualizar os filmes acesse com um usuario</h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<!-- {{ movies.data.results | json }} -->
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Deseja adicionar o filme a sua lista?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>

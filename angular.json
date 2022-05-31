@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "650766e3-6701-42cf-b6bc-38ed6668dcaa"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -31,7 +34,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css"
             ],
             "scripts": []
           },
