@@ -75,7 +75,7 @@ export class MoviesComponent implements OnInit {
       error: (error: any) => {
         console.log(error);
         this.spinner.hide();
-        this.toastr.error('Erro ao Carregar os Eventos', 'Erro!');
+        this.toastr.error('Erro ao Carregar os Filmes', 'Erro!');
       },
       complete: () => this.spinner.hide(),
     };
